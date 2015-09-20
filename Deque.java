@@ -1,12 +1,12 @@
 import java.util.Iterator;
 
-public class Deque <Item> implements Iterable<Item> {
+public class Deque<Item> implements Iterable<Item> {
 
 	private Node first, last;
 	
 	private class Node {
-		Item item;
-		Node next;
+		private Item item;
+		private Node next;
 	}
 	
 	
@@ -158,15 +158,15 @@ public class Deque <Item> implements Iterable<Item> {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-//		Deque test = new Deque();
+		Deque test = new Deque();
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
 //		
-//		test.addFirst(1);
+		test.addFirst(1);
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
 //		
-//		test.addLast(2);
+		test.addLast(2);
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
 //		
@@ -185,6 +185,11 @@ public class Deque <Item> implements Iterable<Item> {
 //		test.removeLast();
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
+		
+		Iterator i = test.iterator();
+		
+		while (i.hasNext())
+			System.out.println(i.next());
 
 	}
 }

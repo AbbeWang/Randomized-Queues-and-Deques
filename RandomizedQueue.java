@@ -17,7 +17,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		// is the queue empty?
 		
 		
-		return N==0;
+		return N == 0;
 	}
 	
 	public int size() {
@@ -66,7 +66,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		
 		s[--N] = null;
 		
-		if (N>0 && N == s.length/4)
+		if (N > 0 && N == s.length/4)
 			resize(s.length/2);
 	
 		return item;		
@@ -93,7 +93,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	public Iterator<Item> iterator() {
 		// return an independent iterator over items in random order
 		
-		StdRandom.shuffle(s, 0, N-1);
+//		if (N != 0)  StdRandom.shuffle(s, 0, N-1);
+
 		return new ListIterator();
 	}
 	
@@ -101,11 +102,17 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	private class ListIterator implements Iterator<Item> {
 		
 		private int m = 0;
+		private Item[] randoms;
+		
+		public ListIterator() {
+			this.randoms = s;
+			if (N != 0)  StdRandom.shuffle(randoms, 0, N-1);
+		}
 		
 		@Override
 		public boolean hasNext() {
 			// TODO Auto-generated method stub
-			return m!=N;
+			return m != N;
 		}
 
 		@Override
@@ -118,7 +125,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 			
 //			StdRandom.shuffle(s, 0, N-1);
 			
-			Item item = s[m];
+			Item item = randoms[m];
 			m++;
 			return item;
 		}
@@ -132,32 +139,34 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-//		RandomizedQueue test = new RandomizedQueue();
+		RandomizedQueue test = new RandomizedQueue();
+
+		
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
 //		
-//		test.enqueue(5);
+		test.enqueue(5);
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
 //		
-//		test.enqueue(4);
+		test.enqueue(4);
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
 //		
-//		test.enqueue(3);
+		test.enqueue(3);
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
 //		
-//		test.enqueue(2);
+		test.enqueue(2);
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
 //		
-//		test.enqueue(1);
+		test.enqueue(1);
 //		System.out.println(test.isEmpty());
 //		System.out.println(test.size());
 //		
 //		System.out.println(test.dequeue());
-//		
+		
 //		System.out.println(test.sample());
 //		System.out.println(test.sample());
 //		System.out.println(test.sample());
@@ -169,6 +178,15 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 //		System.out.println(test.dequeue());
 //		System.out.println(test.dequeue());
 //		System.out.println(test.dequeue());
+		
+		Iterator i = test.iterator();
+		while (i.hasNext())
+			System.out.println(i.next());
+
+		Iterator j = test.iterator();
+		while (j.hasNext())
+			System.out.println(j.next());
+
 
 		}
 }
